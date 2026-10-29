@@ -3,71 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Granja de Oro Mini App</title>
+    <title>Granja de Miel - Mini App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #121212; color: #fff; text-align: center; margin: 0; padding: 20px; }
-        .container { max-width: 400px; margin: auto; }
-        .card { background: #1e1e1e; padding: 15px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        button { background: #4CAF50; color: white; border: none; padding: 12px 20px; font-size: 16px; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; }
-        button:hover { background: #45a049; }
-        .stats { display: flex; justify-content: space-around; font-size: 18px; margin-bottom: 15px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1500, #3d2c00);
+            color: #fff6d1;
+            text-align: center;
+            margin: 0;
+            padding: 15px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        h1 {
+            color: #ffcc00;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 183, 3, 0.15);
+            border: 2px solid #ffb703;
+            border-radius: 15px;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(255, 183, 3, 0.2);
+        }
+        .card {
+            background: rgba(40, 30, 10, 0.9);
+            border: 1px solid #ffd166;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+        .card h3 {
+            color: #ffd166;
+            margin-top: 0;
+        }
+        button {
+            background: linear-gradient(135deg, #ffb703, #fb8500);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 14px 24px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(251, 133, 0, 0.4);
+            transition: transform 0.1s ease, background 0.2s;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        button:hover {
+            background: linear-gradient(135deg, #ffd166, #ffb703);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🌾 Granja de Oro</h1>
+        <h1>🍯 Granja de Miel 🐝</h1>
         <div class="stats">
-            <div id="semillas">🌱 Semillas: 52</div>
-            <div id="hojas">🍃 Hojas: 14</div>
-        </div>
-        
-        <div class="card">
-            <h3>Área de Cultivo</h3>
-            <p>¡Haz clic para cosechar al instante!</p>
-            <button onclick="cosechar()">🌱 Cosechar</button>
+            <div id="semillas">🌾 Polen: 52</div>
+            <div id="hojas">🍯 Miel: 14</div>
         </div>
 
         <div class="card">
-            <h3>📊 Rendimiento en Vivo</h3>
-            <canvas id="graficaRendimiento" width="300" height="150"></canvas>
+            <h3>Área de Colmenas</h3>
+            <p>¡Haz clic para cosechar oro líquido al instante!</p>
+            <button>✨ Cosechar Miel</button>
         </div>
     </div>
-
-    <script>
-        let semillas = 52;
-        let hojas = 14;
-
-        function cosechar() {
-            semillas += 20;
-            document.getElementById('semillas').innerText = "🌱 Semillas: " + semillas;
-            alert("¡Has cosechado +20 Semillas!");
-            actualizarGrafica(semillas);
-        }
-
-        const ctx = document.getElementById('graficaRendimiento').getContext('2d');
-        const graficaRendimiento = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Inicio', 'Cosecha 1', 'Cosecha 2'],
-                datasets: [{
-                    label: 'Crecimiento de Semillas',
-                    data: [10, 30, semillas],
-                    borderColor: '#4CAF50',
-                    backgroundColor: 'rgba(76, 175, 80, 0.2)',
-                    borderWidth: 2,
-                    fill: true
-                }]
-            },
-            options: { responsive: true }
-        });
-
-        function actualizarGrafica(nuevoValor) {
-            graficaRendimiento.data.labels.push('Nueva');
-            graficaRendimiento.data.datasets[0].data.push(nuevoValor);
-            graficaRendimiento.update();
-        }
-    </script>
 </body>
 </html>
